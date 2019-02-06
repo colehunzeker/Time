@@ -68,9 +68,21 @@ public class Time {
             setSeconds(seconds + 1);
         }
         catch (IllegalArgumentException e){
-            int oldSec = seconds;
-            seconds = seconds % 60;
-            minutes += oldSec / 60;
+            seconds = 0;
+            minutes += seconds;
+            try {
+                setMinutes(minutes + 1);
+            }
+            catch (IllegalArgumentException r){
+                minutes = 0;
+                hours += minutes;
+                try {
+                    setHours(hours + 1);
+                }
+                catch (IllegalArgumentException t){
+                    hours = 0;
+                }
+            }
         }
 
     }

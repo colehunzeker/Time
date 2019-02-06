@@ -73,9 +73,15 @@ public class Date {
             setDay(day + 1);
         }
         catch (IllegalArgumentException e){
-            int oldDay = day;
-            day = (day % daysInMonth) + 1;
-            month += oldDay / daysInMonth;
+            day =  1;
+            month += day;
+            try {
+             setMonth(month + 1);
+          }
+            catch (IllegalArgumentException r) {
+                month = 1;
+                year += month;
+            }
         }
     }
 }
