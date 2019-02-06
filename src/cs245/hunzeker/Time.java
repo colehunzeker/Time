@@ -63,4 +63,15 @@ public class Time {
         }
         this.seconds = seconds;
     }
+    public void tick(){
+        try {
+            setSeconds(seconds + 1);
+        }
+        catch (IllegalArgumentException e){
+            int oldSec = seconds;
+            seconds = seconds % 60;
+            minutes += oldSec / 60;
+        }
+
+    }
 }

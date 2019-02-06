@@ -10,7 +10,7 @@ public class Date {
 
 
 
-    public Date(int day, int month, int year) {
+    public Date(int month, int day, int year) {
         System.out.println("How many days are in this month?");
         daysInMonth = goodDate.nextInt();
         try {
@@ -36,7 +36,7 @@ public class Date {
 
     }
     public String toString(){
-        return (day + "/" + month + "/" + year);
+        return (month + "/" + day + "/" + year);
     }
 
     public int getDay() {
@@ -67,5 +67,15 @@ public class Date {
         if (year < 0)
             throw new IllegalArgumentException("Invalid Year");
         this.year = year;
+    }
+    public void nextDay(){
+        try {
+            setDay(day + 1);
+        }
+        catch (IllegalArgumentException e){
+            int oldDay = day;
+            day = (day % daysInMonth) + 1;
+            month += oldDay / daysInMonth;
+        }
     }
 }

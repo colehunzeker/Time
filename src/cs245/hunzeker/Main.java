@@ -14,7 +14,14 @@ public class Main {
         }
         System.out.println(t);
         */
-        Time t2 = new Time(24, 0, 1);
+        Time t2 = new Time(7, 10, 59);
         System.out.println(t2);
+        t2.tick();
+        System.out.println(t2);
+        Date d = new Date (12, 31, 2016);
+        System.out.println(d);
+        d.nextDay();
+        System.out.println(d);
     }
+
 }
