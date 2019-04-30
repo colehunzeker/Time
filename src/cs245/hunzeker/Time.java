@@ -7,26 +7,29 @@ public class Time {
 
 
     public Time(int hours, int minutes, int seconds) {
-        try{
-            setSeconds(seconds);
+        if (seconds > 0) {
+            try {
+                setSeconds(seconds);
+            } catch (IllegalArgumentException e) {
+                this.seconds = seconds % 60;
+                minutes += seconds / 60;
+            }
         }
-        catch(IllegalArgumentException e){
-            this.seconds = seconds % 60;
-            minutes += seconds / 60;
+        if (minutes > 0) {
+            try {
+                setMinutes(minutes);
+            } catch (IllegalArgumentException e) {
+                this.minutes = minutes % 60;
+                hours += minutes / 60;
+            }
         }
-        try {
-            setMinutes(minutes);
-        }
-        catch(IllegalArgumentException e){
-            this.minutes = minutes % 60;
-            hours += minutes / 60;
-        }
-        try {
-            setHours(hours);
-        }
-        catch (IllegalArgumentException e){
-            this.hours = hours % 24;
+        if (hours > 0) {
+            try {
+                setHours(hours);
+            } catch (IllegalArgumentException e) {
+                this.hours = hours % 24;
 
+            }
         }
     }
     public String toString(){
@@ -64,12 +67,15 @@ public class Time {
         this.seconds = seconds;
     }
     public void tick(){
-        try {
+            try {
             setSeconds(seconds + 1);
         }
-        catch (IllegalArgumentException e){
-            seconds = 0;
-            minutes += seconds;
+
+            catch(IllegalArgumentException e){
+                seconds = 0;
+                minutes += seconds;
+            }
+
             try {
                 setMinutes(minutes + 1);
             }
@@ -86,4 +92,3 @@ public class Time {
         }
 
     }
-}

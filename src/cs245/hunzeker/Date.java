@@ -8,31 +8,42 @@ public class Date {
     Scanner goodDate = new Scanner(System.in);
     public int daysInMonth;
 
+    public Date(){
+        day = 1;
+        month = 1;
+        year = 1;
+    }
+
 
 
     public Date(int month, int day, int year) {
         System.out.println("How many days are in this month?");
         daysInMonth = goodDate.nextInt();
-        try {
-            setDay(day);
+        if (day > 0){
+            try {
+                setDay(day);
+            }
+            catch (IllegalArgumentException e){
+                    this.day = day % daysInMonth;
+                    month += day / daysInMonth;
+                }
+            }
+        if (month > 0) {
+            try {
+                setMonth(month);
+            } catch (IllegalArgumentException e) {
+                this.month = month % 12;
+                year += month / 12;
+            }
         }
-        catch (IllegalArgumentException e) {
-            this.day = day % daysInMonth;
-            month += day / daysInMonth;
+        if (year > 0) {
+            try {
+                setYear(year);
+            } catch (IllegalArgumentException e) {
+                this.year = -year;
+            }
         }
-        try {
-            setMonth(month);
-        }
-        catch(IllegalArgumentException e){
-            this.month = month % 12;
-            year += month / 12;
-        }
-        try{
-            setYear(year);
-        }
-        catch (IllegalArgumentException e){
-            this.year = -year;
-        }
+
 
     }
     public String toString(){

@@ -18,10 +18,12 @@ public class Main {
         System.out.println(t2);
         t2.tick();
         System.out.println(t2);
-        Date d = new Date (12, 150, 2016);
+        Date d = new Date (12, -23, 2016);
         System.out.println(d);
         d.nextDay();
         System.out.println(d);
+        Date d2 = new Date();
+        System.out.println(d2);
     }
 
 }
